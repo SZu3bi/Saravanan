@@ -31,7 +31,7 @@ node {
             }else{
 		    
 		        println 'hello2'
-                  rc = sh returnStatus: true, script: "sfdx force:auth:jwt:grant --clientid 3MVG9SemV5D80oBfdolojVL1A_i_iNwWbRXIMbr5T.XScSULXS8JkbYirpGvORtCClVl9rvuHVqSU4h9kIR7h --jwtkeyfile server.key --username rcsaravananmkd-wdps@force.com --instanceurl https://login.salesforce.com --setdefaultdevhubusername"
+                  rc = bat returnStatus: true, script: "sfdx force:auth:jwt:grant --clientid 3MVG9SemV5D80oBfdolojVL1A_i_iNwWbRXIMbr5T.XScSULXS8JkbYirpGvORtCClVl9rvuHVqSU4h9kIR7h --jwtkeyfile server.key --username rcsaravananmkd-wdps@force.com --instanceurl https://login.salesforce.com --setdefaultdevhubusername"
 		    println 'hello3'
 		
 	    }
