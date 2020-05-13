@@ -33,6 +33,7 @@ node {
 		        println 'hello2'
                   rc = bat returnStatus: true, script: "sfdx force:auth:jwt:grant --clientid 3MVG9SemV5D80oBfdolojVL1A_i_iNwWbRXIMbr5T.XScSULXS8JkbYirpGvORtCClVl9rvuHVqSU4h9kIR7h --jwtkeyfile server.key --username rcsaravananmkd-wdps@force.com --instanceurl https://login.salesforce.com --setdefaultdevhubusername"
 		    println 'hello3'
+		    println rc
 		
 	    }
             if (rc != 0) { error 'hub org authorization failed' }
