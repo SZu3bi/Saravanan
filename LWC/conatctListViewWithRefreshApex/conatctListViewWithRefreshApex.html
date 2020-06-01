@@ -1,0 +1,87 @@
+<template>
+    <lightning-card class="slds-card slds-card_boundary related_list_card_border_top" title="ContactListView">
+
+        <!-- New button -->
+        <div slot="actions">
+            <lightning-button variant="neutral" label="New" type="text" onclick={createNewRecord}
+                class="slds-m-right_small">
+            </lightning-button>
+        </div>
+
+        <!--- Contact Table-->
+        <div style="width: auto;">
+            <template if:true={emptyList}>
+                <lightning-datatable data={data} columns={columns} key-field="id" show-row-number-column
+                    hide-checkbox-column="true" onrowaction={handleRowActions} sorted-by={sortBy}
+                    sorted-direction={sortDirection} onsort={handleSortdata}></lightning-datatable>
+            </template>
+            <template if:false={emptyList}>
+                There is no contacts
+            </template>
+        </div> <br />
+
+        <!-- Spinner -->
+        <div if:true={showLoadingSpinner}>
+            <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+        </div>
+
+        <!-- Detail view modal -->
+        <template if:true={ShowModal}>
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+                aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+
+                    <!-- modal header -->
+                    <header class="slds-modal__header">
+                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                            title="Close" onclick={closeModal}>
+                            <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse"
+                                size="small"></lightning-icon>
+                        </button>
+                        <h2 id="modal-heading-02" class="slds-text-heading_medium slds-hyphenate modalHeading"
+                            if:true={editRecord}> Update Contact</h2>
+                        <h2 id="modal-heading-0" class="slds-text-heading_medium slds-hyphenate modalHeading"
+                            if:true={newRecord}>New Contact</h2>
+                    </header>
+
+                    <!-- showing record edit form -->
+                    <div if:true={isEditForm} class="slds-theme_default">
+                        <lightning-record-edit-form layout-type="Full" object-api-name="Contact" record-id={currentRecordId}>
+                            <lightning-messages></lightning-messages>
+                            <div if:true={error}>
+                                {error}
+                            </div>
+                            <div class="slds-col slds-size_1-of-1">
+                                <lightning-input-field field-name="FirstName" onchange={firstNameChange}>
+                                </lightning-input-field>
+                            </div>
+                            <div class="slds-col slds-size_1-of-1">
+                                <lightning-input-field field-name="LastName" onchange={lastNameChange}>
+                                </lightning-input-field>
+                            </div>
+                            <div class="slds-col slds-size_1-of-1">
+                                <lightning-input-field field-name="Email" onchange={emailChange}>
+                                </lightning-input-field>
+                            </div>
+
+                            <br />
+                            <ul class="slds-button-group-row slds-grid slds-grid_align-center">
+                                <li class="slds-button-group-item">
+                                    <lightning-button class="slds-m-top_small" variant="brand" name="update"
+                                        label="save" onclick={handleSubmit}></lightning-button>
+                                </li>
+                                <li class="slds-button-group-item">
+                                    <lightning-button class="slds-m-top_small" variant="brand" type="text"
+                                        label="Cancel" onclick={closeModal}></lightning-button>
+                                </li>
+                            </ul>
+                        </lightning-record-edit-form><br/>
+                        <div></div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+    </lightning-card>
+</template>
