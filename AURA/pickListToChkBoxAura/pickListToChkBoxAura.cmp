@@ -1,0 +1,3 @@
+<aura:component  implements="lightning:actionOverride,force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId" access="global" >
+<c:pickListToChkBoxForm recordId="{!v.recordId}"></c:pickListToChkBoxForm>
+</aura:component>	

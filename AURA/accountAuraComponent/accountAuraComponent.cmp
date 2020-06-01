@@ -1,0 +1,11 @@
+<aura:component  implements="flexipage:availableForRecordHome,force:hasRecordId,lightning:isUrlAddressable,flexipage:availableForAllPageTypes" access="global">
+<aura:attribute  type="String" name="recID" default=""  />
+<aura:attribute  type="String" name="acntName" default=""  />
+<aura:attribute  type="String" name="acntLocation" default=""  />
+<aura:handler name="init" value="{!this}" action="{!c.init}"/>  
+
+Account id is : {!v.recID} <br/>
+Account Name is : {!v.acntName}   <br/>
+Account Location is : {!v.acntLocation}  
+
+</aura:component>	
