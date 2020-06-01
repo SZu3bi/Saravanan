@@ -1,0 +1,107 @@
+<template>
+
+     <!--Loading Spinner-->
+     <div class="spinner">
+            <template if:true={isLoading}>
+                <lightning-spinner alternative-text="Loading" variant="brand" size="large">
+                </lightning-spinner>
+            </template>
+        </div>
+
+    <lightning-card class="" title="Contact List View">
+ 
+            <!-- New Contact Button-->
+            <div class="slds-media__body">
+                    <div slot="actions" class="slds-float--right">
+                        <lightning-button variant="neutral" label="New" title="New"
+                            onclick={navigateToNewPage} class="slds-m-right_small ">
+                        </lightning-button>
+                    </div>
+                </div> <br/><br/>
+
+        <!--Contact List table starts-->
+
+        <template if:true={renderTable}>
+            <div class="tableDiv">
+                <div class={tableStyle}>
+                    <table aria-describedby="conatact-list" class="slds-table  slds-table_bordered ">
+
+                        <!--Header of the table-->
+                        <thead>
+                            <tr class="slds-line-height_reset">
+                                <th class="slds-size_1-of-6 " scope="col">
+                                    <div class="slds-truncate " title="First Name">First Name</div>
+                                </th>
+                                <th class="slds-size_1-of-6 " scope="col">
+                                    <div class="slds-truncate " title="Last Name">Last Name</div>
+                                </th>
+                                <th class="slds-size_1-of-6 " scope="col">
+                                    <div class="slds-truncate " title="Email">Email</div>
+                                </th>
+                                <th class="slds-size_1-of-6" scope="col">
+                                    <div class="slds-truncate " title="Phone">Phone
+                                    </div>
+                                </th>
+                                <th class="slds-size_1-of-6" scope="col">
+                                    <div class="slds-truncate " title="Mobile">Mobile
+                                    </div>
+                                </th>
+                                <th class="slds-size_1-of-6" scope="col">
+                                    <div class="slds-truncate " title=""></div>
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <!--Body of the table-->
+                        <tbody>
+                            <template for:each={contactList} for:item="item" for:index="indexVar">
+                                <tr key={item.Id} class="slds-hint-parent">
+                                    <td class="slds-size_1-of-6">
+                                        <div>
+                                            {item.FirstName}
+                                        </div>
+                                    </td>
+                                    <td class="slds-size_1-of-6">
+                                        <div>
+                                            {item.LastName}
+                                        </div>
+                                    </td>
+                                    <td class="slds-size_1-of-6">
+                                        <div>
+                                            {item.Email}
+                                        </div>
+                                    </td>
+                                    <td class="slds-size_1-of-6">
+                                        <div>
+                                            {item.Phone}
+                                        </div>
+                                    </td>
+                                    <td class="slds-size_1-of-6">
+                                        <div>
+                                            {item.MobilePhone}
+                                        </div>
+                                    </td>
+                                    <td class="slds-size_1-of-6">
+                                        <div class="buttonMenu">
+                                            <lightning-button-menu alternative-text="Toggle menu">
+                                                <P onclick={navigateToRecordEditPage} data-recid={item.Id}>
+                                                    <lightning-menu-item label="Edit">
+                                                    </lightning-menu-item>
+                                                </P>
+                                                <p onclick={deleteContact} data-recid={item.Id}>
+                                                    <lightning-menu-item label="Delete">
+                                                    </lightning-menu-item>
+                                                </p>
+                                            </lightning-button-menu>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </template>
+    </lightning-card>
+</template>

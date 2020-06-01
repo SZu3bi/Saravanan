@@ -1,0 +1,20 @@
+<template>
+    <lightning-record-edit-form class="Case" object-api-name="Case" record-id={recordId} onsuccess={handleSucess} onsubmit={handleSubmit}>
+
+        <lightning-input-field field-name="Subject">
+        </lightning-input-field>
+
+        <lightning-input-field field-name="Description">
+        </lightning-input-field>
+        <!--Display the picklist value as radio button-->
+        <template for:each={originValues} for:item="item">
+            <lightning-input name="Origin" checked={item.checkedBoolean} placeholder="Account Type" key={item.value}
+                label={item.label} data-value={item.value} type="radio" onselect={handleChange}></lightning-input>
+        </template>
+
+        <lightning-button type="submit" class="slds-m-top_small" label="Save">
+        </lightning-button>
+
+    </lightning-record-edit-form>
+
+</template>
