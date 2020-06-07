@@ -1,0 +1,21 @@
+<template>
+    <lightning-card class="" title={searchKey}>
+        <div class="slds-grid  ">
+            <lightning-layout>
+                <lightning-layout-item padding="around-small">
+                    <template for:each={data} for:item="item" for:index="indexVar">
+                        <div draggable="true" key={item.Id} data-item={item.Id} ondragstart={handleDragStart}>
+                            <div class="slds-text-heading_small slds-box">
+                                <strong> case Number : </strong> {item.CaseNumber} <br />
+                                <strong> Subject : </strong> {item.Subject} <br />
+                                <strong> Origin : </strong> {item.Origin} <br />
+                                <strong> Priority : </strong> {item.Priority} <br />
+
+                            </div> <br />
+                        </div>
+                    </template>
+                </lightning-layout-item>
+            </lightning-layout>
+        </div>
+    </lightning-card>
+</template>

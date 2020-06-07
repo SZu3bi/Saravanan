@@ -1,0 +1,19 @@
+<template>
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col">
+            <c-kanban-list-l-w-c class="New" onrefresh={refreshComp} object-name="Case" field-name="Status"
+                search-key="New" columns="Subject,Status,CaseNumber,Priority,Origin">
+            </c-kanban-list-l-w-c>
+        </div>
+        <div class="slds-col">
+            <c-kanban-list-l-w-c class="Working" onrefresh={refreshComp} object-name="Case" field-name="Status"
+                search-key="Working" columns="Subject,Status,CaseNumber,Priority,Origin">
+            </c-kanban-list-l-w-c>
+        </div>
+        <div class="slds-col">
+            <c-kanban-list-l-w-c class="Closed" onrefresh={refreshComp} object-name="Case" field-name="Status"
+                search-key="Closed" columns="Subject,Status,CaseNumber,Priority,Origin">
+            </c-kanban-list-l-w-c>
+        </div>
+    </div>
+</template>
