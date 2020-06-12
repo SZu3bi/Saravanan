@@ -1,0 +1,153 @@
+<template>
+    <lightning-card title={cityName}>
+
+        <div class="demo-only demo-only--sizing slds-grid slds-wrap">
+            <div class="slds-size_1-of-4">
+                <lightning-input type="text" value={cityValue} label="City Name" onchange={handleChange}>
+                </lightning-input>
+            </div>  &nbsp; &nbsp;
+            <div class="slds-size_1-of-4">
+                <lightning-input type="text" value={postalValue} label="Postal code" onchange={handleChange}>
+                </lightning-input>
+            </div>
+
+        </div> <br/>
+        <div >
+                <lightning-button label="Weather check" onclick={weatherCheck}></lightning-button>
+                <lightning-button label="Air Quality" onclick={airQualityCheck}></lightning-button>
+        </div>
+
+
+
+        <template if:true={airQualityChk}>
+            <lightning-layout>
+
+                <lightning-layout-item size="2" medium-device-size="2" padding="around-small">
+                    <lightning-card icon-name="standard:topic" title="Air Quality Index">
+                        <div class="slds-align_absolute-center color-blue">
+                            <template if:true={result}>
+                                {aqi}
+                            </template>
+                        </div>
+                    </lightning-card>
+                </lightning-layout-item>
+
+                <lightning-layout-item size="2" medium-device-size="2" padding="around-small">
+                    <lightning-card icon-name="standard:topic" title="O3 Concentration">
+                        <div class="slds-align_absolute-center color-blue">
+                            <template if:true={result}>
+                                {o3}
+                            </template>
+                        </div>
+                    </lightning-card>
+                </lightning-layout-item>
+
+                <lightning-layout-item size="2" medium-device-size="2" padding="around-small">
+                    <lightning-card icon-name="standard:topic" title="SO2 Concentration">
+                        <div class="slds-align_absolute-center color-blue">
+                            <template if:true={result}>
+                                {so2}
+                            </template>
+                        </div>
+                    </lightning-card>
+                </lightning-layout-item>
+
+                <lightning-layout-item size="2" medium-device-size="2" padding="around-small">
+
+                    <lightning-card icon-name="standard:topic" title="NO2 Concentration">
+                        <div class="slds-align_absolute-center color-blue">
+                            <template if:true={result}>
+                                {no2}
+                            </template>
+                        </div>
+                    </lightning-card>
+                </lightning-layout-item>
+
+                <lightning-layout-item size="2" medium-device-size="2" padding="around-small">
+
+                    <lightning-card icon-name="standard:topic" title="CO Concentration">
+                        <div class="slds-align_absolute-center color-blue">
+                            <template if:true={result}>
+                                {co}
+                            </template>
+                        </div>
+                    </lightning-card>
+                </lightning-layout-item>
+            </lightning-layout>
+
+        </template>
+
+        <template if:true={weatherchk}>
+
+            <lightning-layout>
+                <lightning-layout-item size="2" medium-device-size="2" padding="around-small">
+                    <lightning-card icon-name="standard:topic" title="Temperature">
+                        <div class="slds-align_absolute-center color-grey">
+                            <template if:true={result}>
+                                {temperature}
+                            </template>
+                        </div>
+                    </lightning-card>
+                </lightning-layout-item>
+
+                <lightning-layout-item size="2" medium-device-size="2" padding="around-small">
+                    <lightning-card icon-name="standard:topic" title="Sun Rise">
+                        <div class="slds-align_absolute-center color-grey">
+                            <template if:true={result}>
+                                <lightning-formatted-time value={sunRise}></lightning-formatted-time>
+
+                            </template>
+                        </div>
+                    </lightning-card>
+                </lightning-layout-item>
+
+                <lightning-layout-item size="2" medium-device-size="2" padding="around-small">
+                    <lightning-card icon-name="standard:topic" title="Sun set">
+                        <div class="slds-align_absolute-center color-grey">
+                            <template if:true={result}>
+
+                                <lightning-formatted-time value={sunSet}></lightning-formatted-time>
+                            </template>
+                        </div>
+                    </lightning-card>
+                </lightning-layout-item>
+
+                <lightning-layout-item size="2" medium-device-size="2" padding="around-small">
+                        <lightning-card icon-name="utility:flow" title="Current Wind Speed">
+                            <div class="slds-align_absolute-center color-grey">
+                                <template if:true={result}>
+                                    {currentWindSpeed}
+                                </template>
+                            </div>
+                        </lightning-card>
+                    </lightning-layout-item>
+    
+                    <lightning-layout-item size="2" medium-device-size="2" padding="around-small">
+                        <lightning-card icon-name="utility:flow" title="Latitude">
+                            <div class="slds-align_absolute-center color-grey">
+                                <template if:true={result}>
+                                    {latitude}
+                                </template>
+                            </div>
+                        </lightning-card>
+                    </lightning-layout-item>
+    
+                    <lightning-layout-item size="2" medium-device-size="2" padding="around-small">
+                        <lightning-card icon-name="utility:flow" title="Longitude">
+                            <div class="slds-align_absolute-center color-grey">
+                                <template if:true={result}>
+                                    {longitude}
+                                </template>
+                            </div>
+                        </lightning-card>
+                    </lightning-layout-item>
+
+            </lightning-layout>
+
+        </template>
+
+
+        <lightning-map map-markers={mapMarkers} zoom-level={zoomLevel}>
+        </lightning-map>
+    </lightning-card>
+</template>
